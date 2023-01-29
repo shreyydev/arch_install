@@ -64,7 +64,7 @@ systemctl enable iwd.service
 echo "%wheel ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 echo "Enter Username: "
 read username
-useradd -m -G wheel -s /bin/zsh $username
+useradd -m -G wheel -s /bin/fish $username
 passwd $username
 echo "Pre-Installation Finish Reboot now"
 ai3_path=/home/$username/arch_install3.sh
