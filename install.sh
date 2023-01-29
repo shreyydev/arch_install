@@ -81,7 +81,7 @@ cd $HOME
 # yay: AUR helper
 sudo git clone https://aur.archlinux.org/yay-git.git
 cd yay-git
-makepkg -si
+makepkg -fsri
 cd
 
 # Hyprland
@@ -94,4 +94,10 @@ makepkg -fsri
 cd
 pikaur -S libxft-bgra-git yt-dlp-drop-in
 mkdir downloads projects unbc
+
+# clean
+cd /home/$username
+rm arch_install3.sh
+cd /
+rm arch_install2.sh
 exit
