@@ -57,9 +57,9 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 pacman -S --noconfirm noto-fonts noto-fonts-emoji noto-fonts-cjk ttf-jetbrains-mono ttf-joypixels ttf-font-awesome \
      sxiv mpv zathura zathura-pdf-mupdf ffmpeg brightnessctl kitty \
-     git fish dunst dhcpcd networkmanager wpa_supplicant firefox
+     git fish dunst dhcpcd wpa_supplicant firefox iwctl
 
-systemctl enable NetworkManager.service 
+systemctl enable iwd.service 
 # user
 echo "%wheel ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 echo "Enter Username: "
