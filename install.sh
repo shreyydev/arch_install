@@ -25,7 +25,7 @@ genfstab -U /mnt >> /mnt/etc/fstab
 sed '1,/^#part2$/d' `basename $0` > /mnt/arch_install2.sh
 chmod +x /mnt/arch_install2.sh
 arch-chroot /mnt ./arch_install2.sh
-exit 
+exit
 
 #part2
 printf '\033c'
@@ -57,9 +57,11 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 pacman -S --noconfirm noto-fonts noto-fonts-emoji noto-fonts-cjk ttf-jetbrains-mono ttf-joypixels ttf-font-awesome \
      sxiv mpv zathura zathura-pdf-mupdf ffmpeg brightnessctl kitty \
-     git fish dunst dhcpcd wpa_supplicant firefox iwctl
+     git fish dunst dhcpcd wpa_supplicant firefox iwd thunar ranger wofi waybaar \
+     qt5-wayland glfw-wayland xorg-xwayland xorg-xlsclients
 
 systemctl enable iwd.service 
+systemctl enable dhcpcd.service 
 # user
 echo "%wheel ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 echo "Enter Username: "
@@ -80,24 +82,21 @@ cd $HOME
 
 # yay: AUR helper
 sudo git clone https://aur.archlinux.org/yay-git.git
+sudo chown -R $username /home/$username/yay-git
 cd yay-git
-makepkg -fsri
+makepkg -si
 cd
 
 # Hyprland
-yay -S hyprland-git
+yay -S hyprland-git joplin
 
-# pikaur: AUR helper
-git clone https://aur.archlinux.org/pikaur.git
-cd pikaur
-makepkg -fsri
-cd
-pikaur -S libxft-bgra-git yt-dlp-drop-in
 mkdir downloads projects unbc
 
 # clean
 cd /home/$username
-rm arch_install3.sh
+sudo rm arch_install3.sh
 cd /
-rm arch_install2.sh
+sudo rm arch_install2.sh
+umount -R /mnt
+sudo reboot
 exit
